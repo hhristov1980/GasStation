@@ -8,15 +8,16 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.LinkedBlockingQueue;
 
-public class FuelLoaderDevice {
+public class FuelDispenser {
     private static int uniqueId = 1;
     private String deviceId;
     private GasStation gasStation;
     private ConcurrentHashMap<Car.FuelType,Integer> statistics;
     private BlockingQueue<Car> carQueue;
+    private int currentLitters;
 
 
-    public FuelLoaderDevice(GasStation gasStation){
+    public FuelDispenser(GasStation gasStation){
         this.deviceId = "Device "+uniqueId++;
         this.gasStation = gasStation;
         statistics = new ConcurrentHashMap<>();
@@ -26,17 +27,17 @@ public class FuelLoaderDevice {
         statistics.put(Car.FuelType.GAS,0);
     }
 
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        FuelLoaderDevice that = (FuelLoaderDevice) o;
-        return deviceId == that.deviceId && gasStation.equals(that.gasStation);
+    public BlockingQueue<Car> getCarQueue() {
+        return carQueue;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(deviceId, gasStation);
+    public String getDeviceId() {
+        return deviceId;
+    }
+
+    public void setCurrentLitters(int currentLitters) {
+        if(currentLitters>0){
+            this.currentLitters = currentLitters;
+        }
     }
 }
