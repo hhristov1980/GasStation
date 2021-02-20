@@ -10,14 +10,14 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 public class FuelLoaderDevice {
     private static int uniqueId = 1;
-    private int deviceId;
+    private String deviceId;
     private GasStation gasStation;
     private ConcurrentHashMap<Car.FuelType,Integer> statistics;
     private BlockingQueue<Car> carQueue;
 
 
     public FuelLoaderDevice(GasStation gasStation){
-        this.deviceId = uniqueId++;
+        this.deviceId = "Device "+uniqueId++;
         this.gasStation = gasStation;
         statistics = new ConcurrentHashMap<>();
         carQueue = new LinkedBlockingQueue<>();
