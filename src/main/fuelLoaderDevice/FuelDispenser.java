@@ -18,7 +18,7 @@ public class FuelDispenser {
 
 
     public FuelDispenser(GasStation gasStation){
-        this.deviceId = "Device "+uniqueId++;
+        this.deviceId = "Fuel Dispenser "+uniqueId++;
         this.gasStation = gasStation;
         statistics = new ConcurrentHashMap<>();
         carQueue = new LinkedBlockingQueue<>();

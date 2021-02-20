@@ -134,7 +134,10 @@ public class GasStation {
                     if(!statistics.getGeneralStatistics().get(car.getFuelDispenser().getDeviceId()).containsKey(car.getFuelType())){
                         statistics.getGeneralStatistics().get(car.getFuelDispenser().getDeviceId()).put(car.getFuelType(),new CopyOnWriteArrayList<>());
                     }
-                    statistics.getGeneralStatistics().get(car.getFuelDispenser().getDeviceId()).get(car.getFuelType()).add((ConcurrentHashMap<Integer, LocalDateTime>) new ConcurrentHashMap<>().put(car.getLittersToPutInTank(),LocalDateTime.now()));
+                    ConcurrentHashMap<Integer, LocalDateTime> loading = new ConcurrentHashMap<>();
+                    loading.put(car.getLittersToPutInTank(), LocalDateTime.now());
+                    statistics.getGeneralStatistics().get(car.getFuelDispenser().getDeviceId()).get(car.getFuelType()).add(loading);
+
                     notifyAll();
                     carWaiting = true;
                     car.setPaid(true);

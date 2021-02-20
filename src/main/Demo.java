@@ -25,11 +25,12 @@ public class Demo {
             gasStation.addLoader(new Loader(Constants.NAMES[Randomizer.getRandomInt(0,Constants.NAMES.length-1)],gasStation));
         }
         gasStation.open();
-        for(int i = 0; i<5; i++){
+        for(int i = 0; i<3; i++){
             Car.FuelType type = Car.FuelType.values()[Randomizer.getRandomInt(0,Car.FuelType.values().length-1)];
             Car car = new Car(type,gasStation);
             car.start();
         }
+        statistics.start();
     }
 
 }
